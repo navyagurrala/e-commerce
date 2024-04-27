@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(227, 173, 114);
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+
+        button {
+            background-color: rgb(239, 77, 99);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #d9534f;
+        }
+
+        button:active {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>JEWELERY</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="itemTable">
+            <!-- Table rows will be dynamically added here -->
+        </tbody>
+    </table>
+    <script>
+        let a=[
+        {
+        "id": 5,
+        "title": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
+        "price": 695,
+        "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
+        "category": "jewelery",
+        "image": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
+        "rating": {
+            "rate": 4.6,
+            "count": 400
+        }
+    },
+    {
+        "id": 6,
+        "title": "Solid Gold Petite Micropave ",
+        "price": 168,
+        "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
+        "category": "jewelery",
+        "image": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
+        "rating": {
+            "rate": 3.9,
+            "count": 70
+        }
+    },
+    {
+        "id": 7,
+        "title": "White Gold Plated Princess",
+        "price": 9.99,
+        "description": "Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day...",
+        "category": "jewelery",
+        "image": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
+        "rating": {
+            "rate": 3,
+            "count": 400
+        }
+    },
+    {
+        "id": 8,
+        "title": "Pierced Owl Rose Gold Plated Stainless Steel Double",
+        "price": 10.99,
+        "description": "Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel",
+        "category": "jewelery",
+        "image": "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg",
+        "rating": {
+            "rate": 1.9,
+            "count": 100
+        }
+    },
+        ]
+    let cartItems = [];
+
+let itemTable = document.getElementById('itemTable');
+
+a.forEach((item, index) => {
+    let row = document.createElement('tr');
+    let indexCell = document.createElement('td');
+    indexCell.textContent = item.id;
+    row.appendChild(indexCell);
+
+    let imageCell = document.createElement('td');
+    let image = document.createElement('img');
+    image.src = item.image;
+    image.alt = item.title;
+    image.style.width = '100px'; // Set image width
+    imageCell.appendChild(image);
+    row.appendChild(imageCell);
+
+    let titleCell = document.createElement('td');
+    titleCell.textContent = item.title;
+    row.appendChild(titleCell);
+
+    let priceCell = document.createElement('td');
+    priceCell.textContent = `$${item.price}`;
+    row.appendChild(priceCell);
+
+    let actionCell = document.createElement('td');
+    let addToCartBtn = document.createElement('button');
+    addToCartBtn.textContent = 'Add to Cart';
+    addToCartBtn.addEventListener('click', () => {
+        cartItems.push(item);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        alert('Item added to cart!');
+    });
+    actionCell.appendChild(addToCartBtn);
+    row.appendChild(actionCell);
+
+    itemTable.appendChild(row);
+});
+    </script>
+</body>
+</html>
